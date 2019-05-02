@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Display = (props) => {
+const Display = ({changeDisplayUpper}) => {
     return (
-        <div>
-
+        <div className="pointer" onClick={changeDisplayUpper}>
+            click me to log 7
         </div>
     );
 }
