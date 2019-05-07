@@ -3,6 +3,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+    
 }
 
 .column1-3 {
@@ -12,3 +13,10 @@
 .equals {
     grid-area: 4/4/6/5;
 }
+
+.button-justify-and-align-center {
+    display: grid;
+    justify-self: center;
+    align-self: center;
+}
+

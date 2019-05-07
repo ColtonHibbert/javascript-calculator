@@ -4,57 +4,57 @@ import './buttons.css';
 const Buttons = (props) => {
     return (
         <div
-            className="container"
+            className="container "
         >
-            <div className="column1-3">
+            <div className="column1-3 button-justify-and-align-center">
             ac
             </div>
-            <div>
+            <div className="button-justify-and-align-center">
             /
             </div>
-            <div>
+            <div className="button-justify-and-align-center">
             x
             </div>
-            <div>
+            <div className="button-justify-and-align-center">
             7
             </div>
-            <div>
+            <div className="button-justify-and-align-center">
             8
             </div>
-            <div>
+            <div className="button-justify-and-align-center">
             9
             </div>
-            <div>
+            <div className="button-justify-and-align-center">
             -
             </div>
-            <div>
+            <div className="button-justify-and-align-center">
             4
             </div>
-            <div>
+            <div className="button-justify-and-align-center">
             5
             </div>
-            <div>
+            <div className="button-justify-and-align-center">
             6
             </div>
-            <div>
+            <div className="button-justify-and-align-center">
             +
             </div>
-            <div>
+            <div className="button-justify-and-align-center">
             1
             </div>
-            <div>
+            <div className="button-justify-and-align-center">
             2
             </div>
-            <div>
+            <div className="button-justify-and-align-center">
             3
             </div>
-            <div className="column1-3">
+            <div className="column1-3 button-justify-and-align-center">
             0
             </div>
-            <div>
+            <div className="button-justify-and-align-center">
             .
             </div>
-            <div className="equals">
+            <div className="equals button-justify-and-align-center">
             =
             </div>
         </div>
