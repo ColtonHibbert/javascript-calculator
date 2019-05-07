@@ -23,7 +23,7 @@ const mapDispatchToProps = (dispatch) => {
 class App extends Component {
   constructor() {
     super();
-    this.props = 1;
+    //this.props = 1;
     // this.state= {
     //   value: 1,
     // }
