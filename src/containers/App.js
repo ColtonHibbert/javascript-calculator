@@ -3,9 +3,10 @@ import 'tachyons';
 import Calculator from '../components/Calculator.js';
 import Display from '../components/Display.js';
 import Buttons from '../components/Buttons.js';
-import { changeDisplayUpper } from '../services/actions.js';
+import { changeDisplayUpper, updateCurrentValue,
+ } from '../services/actions.js';
 import { connect } from 'react-redux';
-
+import { store } from '../index.js';
 
 const mapStateToProps = (state) => {
   return {
@@ -17,6 +18,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     changeDisplayUpper: () => dispatch(changeDisplayUpper(7)),
+    updateCurrentValue: (value) => dispatch(updateCurrentValue(value)),
   }
 }
 
@@ -33,9 +35,12 @@ class App extends Component {
     <div className="min-vh-100 bg-light-green flex flex-column items-center">
       <Calculator>
         <Display 
-          changeDisplayUpper={this.props.changeDisplayUpper}
+          
         />
-        <Buttons />
+        <Buttons 
+           changeDisplayUpper={this.props.changeDisplayUpper}
+           updateCurrentValue={this.props.updateCurrentValue}
+        />
       </Calculator>
     </div>
   );
