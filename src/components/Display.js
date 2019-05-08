@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Display = ({changeDisplayUpper}) => {
+const Display = (props) => {
     return (
-        <div className="pointer bg-black" onClick={changeDisplayUpper}>
+        <div className="pointer bg-black">
             <div 
                 className="
                 h2 flex justify-end white
