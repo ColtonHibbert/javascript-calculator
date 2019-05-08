@@ -17,7 +17,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    changeDisplayUpper: () => dispatch(changeDisplayUpper(7)),
+    changeDisplayUpper: () => dispatch(changeDisplayUpper()),
     updateCurrentValue: (value) => dispatch(updateCurrentValue(value)),
   }
 }
@@ -29,6 +29,9 @@ class App extends Component {
     // this.state= {
     //   value: 1,
     // }
+  }
+  functionGetCurrentValue() {
+    
   }
   render() {
   return (

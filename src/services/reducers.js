@@ -3,9 +3,11 @@ import {
 } from "./constants.js";
 
 const initialState = {
-    displayUpper: '',
-    displayLower: '',
-    currentValue: '',
+    displayUpper: null,
+    displayLower: null,
+    currentValue: null,
+    previousValue: null,
+    currentOperand: null,
 }
 
 export const rootReducer = (state=initialState, action={}) => {
