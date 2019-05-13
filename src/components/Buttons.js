@@ -4,14 +4,14 @@ import { store } from '../index.js';
 //import { CHANGE_DISPLAY_UPPER } from '../services/constants.js';
 //import { updateCurrentValue } from '../services/actions';
 
-const Buttons = ({changeDisplayUpper, updateCurrentValue}) => {
+const Buttons = ({changeDisplayUpper, updateCurrentValue, combineInputs, logInput7 }) => {
     return (
         <div
             className="container ba bw1"
         >
             <div 
                 className="w-100 h-100 flex column1-3 justify-center items-center bg-light-red ba pointer dim"
-                onClick={() => console.log("clear")}
+                
             >
             ac
             </div>
@@ -30,7 +30,7 @@ const Buttons = ({changeDisplayUpper, updateCurrentValue}) => {
             <div 
                 className="w-100 h-100 flex justify-center items-center bg-blue ba pointer dim"
              /* onClick={() => store.dispatch({type: CHANGE_DISPLAY_UPPER, payload: 7})*/ 
-             onClick={() => updateCurrentValue(7)}
+             onClick={() => logInput7(7)}
             >
             7
             </div>

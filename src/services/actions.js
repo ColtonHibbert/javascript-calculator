@@ -1,5 +1,6 @@
-import  {CHANGE_DISPLAY_UPPER, CURRENT_VALUE } from './constants.js';
-
+import  {CHANGE_DISPLAY_UPPER, CURRENT_VALUE, COMBINE_INPUTS, LOG_INPUT_7 } from './constants.js';
+import {store} from '../index.js';
+import 'redux';
 
 export const changeDisplayUpper = (value) => {
     console.log(value);
@@ -16,3 +17,18 @@ export const updateCurrentValue = (value) => {
         payload: value,
     }
 }
+
+export const combineInputs = (value) => {
+    console.log(value);
+   return ({type: COMBINE_INPUTS, payload: value });
+}
+
+export const logInput7 = (value, dispatch) => {
+    dispatch(updateCurrentValue(value));
+    dispatch(combineInputs(value));
+    console.log(store.getState());
+    console.log('hello');
+    return {
+        type: LOG_INPUT_7
+    }
+  }

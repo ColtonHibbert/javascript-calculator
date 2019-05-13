@@ -1,5 +1,5 @@
 import {
-     CHANGE_DISPLAY_UPPER, CURRENT_VALUE, 
+     CHANGE_DISPLAY_UPPER, CURRENT_VALUE, COMBINE_INPUTS, LOG_INPUT_7
 } from "./constants.js";
 
 const initialState = {
@@ -8,6 +8,8 @@ const initialState = {
     currentValue: null,
     previousValue: null,
     currentOperand: null,
+    combinedInputs: [],
+    calculatedValue: null,
 }
 
 export const rootReducer = (state=initialState, action={}) => {
@@ -16,6 +18,12 @@ export const rootReducer = (state=initialState, action={}) => {
     } 
     if(action.type === CURRENT_VALUE ) {
         return {...state, currentValue: action.payload }
+    } 
+    if(action.type === COMBINE_INPUTS ) {
+        return {...state, combinedInputs: action.payload }
+    } 
+    if(action.type === LOG_INPUT_7 ) {
+        return {...state, }
     } 
     else {
         return state;
