@@ -20,7 +20,7 @@ export const rootReducer = (state=initialState, action={}) => {
         return {...state, currentValue: action.payload }
     } 
     if(action.type === COMBINE_INPUTS ) {
-        return {...state, combinedInputs: action.payload }
+        return {...state, combinedInputs: [ action.payload ] }
     } 
     if(action.type === LOG_INPUT_7 ) {
         return {...state, }

@@ -29,6 +29,7 @@ const mapDispatchToProps = (dispatch) => {
     logInput7: (value) => {
       dispatch(updateCurrentValue(value));
       dispatch(combineInputs(value));
+      console.log(store.getState());
     },
   }
 }
