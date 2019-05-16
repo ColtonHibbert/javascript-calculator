@@ -1,4 +1,4 @@
-import  {CHANGE_DISPLAY_UPPER, CURRENT_VALUE, COMBINE_INPUTS, LOG_INPUT_7 } from './constants.js';
+import  {CHANGE_DISPLAY_UPPER, CURRENT_VALUE, COMBINE_INPUTS, LOG_INPUT_7, CALCULATED_VALUE } from './constants.js';
 import {store} from '../index.js';
 import 'redux';
 
@@ -23,12 +23,19 @@ export const combineInputs = (value) => {
    return ({type: COMBINE_INPUTS, payload: value });
 }
 
-export const logInput7 = (value, dispatch) => {
-    dispatch(updateCurrentValue(value));
-    dispatch(combineInputs(value));
-    console.log(store.getState());
-    console.log('hello');
+export const calculatedValue = (value) => {
     return {
-        type: LOG_INPUT_7
+        type: CALCULATED_VALUE, 
+        payload: value
     }
-  }
+}
+
+// export const logInput7 = (value, dispatch) => {
+//     dispatch(updateCurrentValue(value));
+//     dispatch(combineInputs(value));
+//     console.log(store.getState());
+//     console.log('hello');
+//     return {
+//         type: LOG_INPUT_7
+//     }
+//   }

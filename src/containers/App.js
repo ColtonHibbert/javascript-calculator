@@ -4,7 +4,7 @@ import Calculator from '../components/Calculator.js';
 import Display from '../components/Display.js';
 import Buttons from '../components/Buttons.js';
 import { changeDisplayUpper, updateCurrentValue,
-         combineInputs, logInput7
+         combineInputs, logInput7, calculatedValue
  } from '../services/actions.js';
 import { connect } from 'react-redux';
 import { store } from '../index.js';
@@ -26,11 +26,21 @@ const mapDispatchToProps = (dispatch) => {
     changeDisplayUpper: () => dispatch(changeDisplayUpper()),
     updateCurrentValue: (value) => dispatch(updateCurrentValue(value)),
     combineInputs: (value) => dispatch(combineInputs(value)),
+    calculatedValue: (value) => dispatch(calculatedValue(value)),
     logInput7: (value) => {
       dispatch(updateCurrentValue(value));
       dispatch(combineInputs(value));
       console.log(store.getState());
     },
+    logPlus: (value) => {
+      dispatch(updateCurrentValue(value));
+      dispatch(combineInputs(value));
+      console.log(store.getState());
+    },
+    logEquals: (value) => {
+      dispatch(updateCurrentValue(value));
+      dispatch(calculatedValue(value));
+    }
   }
 }
 
@@ -55,7 +65,9 @@ class App extends Component {
     
   }
   functionCalulateValue() {
-     return this.props.combinedInputs;
+      const inputs = this.props.combinedInputs.slice();
+      inputs.join("");
+      return inputs;
   }
   render() {
   return (
@@ -68,6 +80,8 @@ class App extends Component {
            changeDisplayUpper={this.props.changeDisplayUpper}
            updateCurrentValue={this.props.updateCurrentValue}
            logInput7={this.props.logInput7}
+           logPlus={this.props.logPlus}
+           logEquals={this.props.logEquals}
         />
       </Calculator>
     </div>

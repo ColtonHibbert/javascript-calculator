@@ -3,8 +3,9 @@ import './buttons.css';
 import { store } from '../index.js';
 //import { CHANGE_DISPLAY_UPPER } from '../services/constants.js';
 //import { updateCurrentValue } from '../services/actions';
-
-const Buttons = ({changeDisplayUpper, updateCurrentValue, combineInputs, logInput7 }) => {
+const Buttons = ({changeDisplayUpper, updateCurrentValue, combineInputs, logInput7, logPlus, 
+logEquals,
+}) => {
     return (
         <div
             className="container ba bw1"
@@ -72,7 +73,7 @@ const Buttons = ({changeDisplayUpper, updateCurrentValue, combineInputs, logInpu
             </div>
             <div 
                 className="w-100 h-100 flex justify-center items-center bg-green ba pointer dim"
-                onClick={() => updateCurrentValue(`+`)}
+                onClick={() => logPlus("+")}
             >
             +
             </div>
@@ -108,7 +109,7 @@ const Buttons = ({changeDisplayUpper, updateCurrentValue, combineInputs, logInpu
             </div>
             <div 
                 className="equals w-100 h-100 flex justify-center items-center bg-light-blue ba pointer dim"
-                onClick={() => updateCurrentValue(`=`)}
+                onClick={() => logEquals()}
             >
             =
             </div>
