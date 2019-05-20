@@ -1,8 +1,11 @@
 import React from 'react';
 
-const Display = (props) => {
+const Display = ({ combinedInputs, calculatedValue, displayLower }) => {
+    const stringValue = calculatedValue;
+    stringValue.toString();
+
     return (
-        <div className="pointer bg-black">
+        <div className="pointer bg-blue">
             <div 
                 className="
                 h2 flex justify-end white
@@ -10,7 +13,7 @@ const Display = (props) => {
                 h3-m
                 h3-l
                 "
-            >upper</div>
+            >{combinedInputs}</div>
             <div 
                 className="
                 h2 flex justify-end white
@@ -18,7 +21,7 @@ const Display = (props) => {
                 h3-m
                 h3-l
                 "
-            >lower</div>
+            >{displayLower}</div>
         </div>
     );
 }

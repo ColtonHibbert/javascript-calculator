@@ -12,7 +12,7 @@ import { store } from '../index.js';
 const mapStateToProps = (state) => {
   return {
     displayUpper: state.displayUpper,
-    displayLower: state.displayLower,
+    displayLower: 1,
     currentValue: state.currentValue,
     previousValue: state.previousValue,
     currentOperand: state.currentOperand,
@@ -27,7 +27,7 @@ const mapDispatchToProps = (dispatch) => {
     updateCurrentValue: (value) => dispatch(updateCurrentValue(value)),
     combineInputs: (value) => dispatch(combineInputs(value)),
     calculatedValue: (value) => dispatch(calculatedValue(value)),
-    logInput7: (value) => {
+    logInput: (value) => {
       dispatch(updateCurrentValue(value));
       dispatch(combineInputs(value));
       console.log(store.getState());
@@ -74,12 +74,14 @@ class App extends Component {
     <div className="min-vh-100 bg-light-green flex flex-column items-center">
       <Calculator>
         <Display 
-          displayUpper={this.props.displayUpper}
+          displayLower={this.props.displayLower}
+          combinedInputs={this.props.combinedInputs}
+          calculatedValue={this.props.calculatedValue}
         />
         <Buttons 
            changeDisplayUpper={this.props.changeDisplayUpper}
            updateCurrentValue={this.props.updateCurrentValue}
-           logInput7={this.props.logInput7}
+           logInput={this.props.logInput}
            logPlus={this.props.logPlus}
            logEquals={this.props.logEquals}
         />
