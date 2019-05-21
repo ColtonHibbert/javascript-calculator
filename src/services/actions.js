@@ -1,4 +1,4 @@
-import  {CHANGE_DISPLAY_UPPER, CURRENT_VALUE, COMBINE_INPUTS, LOG_INPUT_7, CALCULATED_VALUE } from './constants.js';
+import  {CHANGE_DISPLAY_UPPER, CURRENT_VALUE, COMBINE_INPUTS, CALCULATED_VALUE, CLEAR_COMBINED_INPUTS } from './constants.js';
 import {store} from '../index.js';
 import 'redux';
 
@@ -30,6 +30,14 @@ export const calculatedValue = (value) => {
     };
 }
 
+export const clearCombinedInputs = (value) => {
+    return {
+        type: CLEAR_COMBINED_INPUTS, 
+        combinedInputsPayload: [],
+        currentOperatorPayload: null,
+        payload: value,
+    }
+}
 // export const logInput7 = (value, dispatch) => {
 //     dispatch(updateCurrentValue(value));
 //     dispatch(combineInputs(value));
