@@ -1,5 +1,5 @@
 import {
-     CHANGE_DISPLAY_UPPER, CURRENT_VALUE, COMBINE_INPUTS, LOG_INPUT_7, CALCULATED_VALUE
+     CHANGE_DISPLAY_UPPER, CURRENT_VALUE, COMBINE_INPUTS, CALCULATED_VALUE, CLEAR_COMBINED_INPUTS
 } from "./constants.js";
 
 const initialState = {
@@ -27,9 +27,14 @@ export const rootReducer = (state=initialState, action={}) => {
             }()
         }
     } 
-    if(action.type === LOG_INPUT_7 ) {
-        return {...state, }
-    } 
+    if(action.type === CLEAR_COMBINED_INPUTS ) {
+        return{...state,
+            combinedInputs: action.combinedInputsPayload,
+            currentOperator: action.currentOperatorPayload,
+            displayLower: action.payload,
+            calculatedValue: action.payload,
+        }
+    }
     if(action.type === CALCULATED_VALUE ) {
         return {...state, calculatedValue: function calculateValue() {
             const allValues = state.combinedInputs.slice();

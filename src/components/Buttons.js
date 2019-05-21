@@ -3,7 +3,7 @@ import './buttons.css';
 import { store } from '../index.js';
 //import { CHANGE_DISPLAY_UPPER } from '../services/constants.js';
 //import { updateCurrentValue } from '../services/actions';
-const Buttons = ({changeDisplayUpper, updateCurrentValue, combineInputs, logInput, logPlus, 
+const Buttons = ({changeDisplayUpper, updateCurrentValue, combineInputs, logInput, logPlus, allClear,
 logEquals,
 }) => {
     return (
@@ -12,6 +12,7 @@ logEquals,
         >
             <div 
                 className="w-100 h-100 flex column1-3 justify-center items-center bg-light-red ba pointer dim"
+                onClick={() => allClear(0)}
             >
             ac
             </div>

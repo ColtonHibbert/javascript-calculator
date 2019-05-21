@@ -12,7 +12,7 @@ import { store } from '../index.js';
 const mapStateToProps = (state) => {
   return {
     displayUpper: state.displayUpper,
-    displayLower: 1,
+    displayLower: state.calculatedValue,
     currentValue: state.currentValue,
     previousValue: state.previousValue,
     currentOperand: state.currentOperand,
@@ -40,6 +40,11 @@ const mapDispatchToProps = (dispatch) => {
     logEquals: (value) => {
       dispatch(updateCurrentValue(value));
       dispatch(calculatedValue(value));
+    },
+    allClear: (value) => {
+      dispatch(updateCurrentValue(value));
+      dispatch(calculatedValue(value));
+      dispatch(combineInputs(value));
     }
   }
 }
@@ -84,6 +89,7 @@ class App extends Component {
            logInput={this.props.logInput}
            logPlus={this.props.logPlus}
            logEquals={this.props.logEquals}
+           allClear={this.props.allClear}
         />
       </Calculator>
     </div>
