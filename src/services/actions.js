@@ -27,7 +27,7 @@ export const calculatedValue = (value) => {
     return {
         type: CALCULATED_VALUE, 
         payload: value
-    }
+    };
 }
 
 // export const logInput7 = (value, dispatch) => {

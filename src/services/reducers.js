@@ -3,11 +3,11 @@ import {
 } from "./constants.js";
 
 const initialState = {
-    displayUpper: null,
+    //displayUpper: null,
     displayLower: null,
     currentValue: null,
     //previousValue: null,
-    currentOperand: null,
+    currentOperator: null,
     combinedInputs: [],
     calculatedValue: null,
 }
@@ -31,10 +31,10 @@ export const rootReducer = (state=initialState, action={}) => {
         return {...state, }
     } 
     if(action.type === CALCULATED_VALUE ) {
-        return {...state, calculatedValue: function calulateValue() {
+        return {...state, calculatedValue: function calculateValue() {
             const allValues = state.combinedInputs.slice();
             const string = allValues.join("");
-            const calculate = Number(string);
+            const calculate = eval(string);
             return calculate;
             }()
         }
