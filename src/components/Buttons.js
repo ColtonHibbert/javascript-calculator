@@ -29,19 +29,21 @@ logEquals,
             x
             </div>
             <div 
-                className="w-100 h-100 flex justify-center items-center bg-blue ba pointer dim"
-             /* onClick={() => store.dispatch({type: CHANGE_DISPLAY_UPPER, payload: 7})*/ 
-             onClick={() => logInput(7)}
+                id="seven"
+                className="w-100 h-100 flex justify-center items-center bg-blue ba pointer dim" 
+                onClick={() => logInput(7)}
             >
             7
             </div>
             <div 
+                id="eight"
                 className="w-100 h-100 flex justify-center items-center bg-blue ba pointer dim"
                 onClick={() => logInput(8)}
             >
             8
             </div>
             <div 
+                id="nine"
                 className="w-100 h-100 flex justify-center items-center bg-blue ba pointer dim"
                 onClick={() => logInput(9)}
             >
@@ -54,18 +56,21 @@ logEquals,
             -
             </div>
             <div 
+                id="four"
                 className="w-100 h-100 flex justify-center items-center bg-blue ba pointer dim"
                 onClick={() => logInput(4)}
             >
             4
             </div>
             <div 
+                id="five"
                 className="w-100 h-100 flex justify-center items-center bg-blue ba pointer dim"
                 onClick={() => logInput(5)}
             >
             5
             </div>
             <div 
+                id="six"
                 className="w-100 h-100 flex justify-center items-center bg-blue ba pointer dim"
                 onClick={() => logInput(6)}
             >
@@ -78,24 +83,28 @@ logEquals,
             +
             </div>
             <div 
+                id="one"
                 className="w-100 h-100 flex justify-center items-center bg-blue ba pointer dim"
                 onClick={() => logInput(1)}
             >
             1
             </div>
             <div 
+                id="two"
                 className="w-100 h-100 flex justify-center items-center bg-blue ba pointer dim"
                 onClick={() => logInput(2)}
             >
             2
             </div>
             <div 
+                id="three"
                 className="w-100 h-100 flex justify-center items-center bg-blue ba pointer dim"
                 onClick={() => logInput(3)}
             >   
             3
             </div>
             <div 
+                id="zero"
                 className="column1-3 w-100 h-100 flex justify-center items-center bg-blue ba pointer dim"
                 onClick={() => updateCurrentValue(0)}
             >
@@ -108,6 +117,7 @@ logEquals,
             .
             </div>
             <div 
+                id="equals"
                 className="equals w-100 h-100 flex justify-center items-center bg-light-blue ba pointer dim"
                 onClick={() => logEquals(`=`)}
             >

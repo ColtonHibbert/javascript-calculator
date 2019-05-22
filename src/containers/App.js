@@ -8,7 +8,7 @@ import { changeDisplayUpper, updateCurrentValue,
  } from '../services/actions.js';
 import { connect } from 'react-redux';
 import { store } from '../index.js';
-
+//
 const mapStateToProps = (state) => {
   return {
     displayUpper: state.displayUpper,
