@@ -4,7 +4,7 @@ import Calculator from '../components/Calculator.js';
 import Display from '../components/Display.js';
 import Buttons from '../components/Buttons.js';
 import { changeDisplayUpper, updateCurrentValue,
-         combineInputs, logInput7, calculatedValue
+         combineInputs, calculatedValue
  } from '../services/actions.js';
 import { connect } from 'react-redux';
 import { store } from '../index.js';
@@ -63,10 +63,10 @@ class App extends Component {
   //   console.log(store.getState())
   //   console.log('hello')
   // }
-  logInput8() {
-    this.props.updateCurrentValue(8);
-  }
   functionGetCurrentValue() {
+    
+  }
+  checkZeros() {
     
   }
   functionCalulateValue() {

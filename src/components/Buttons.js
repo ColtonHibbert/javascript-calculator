@@ -11,18 +11,21 @@ logEquals,
             className="container ba bw1"
         >
             <div 
+                
                 className="w-100 h-100 flex column1-3 justify-center items-center bg-light-red ba pointer dim"
                 onClick={() => allClear(0)}
             >
             ac
             </div>
             <div 
+                id="divide"
                 className="w-100 h-100 flex justify-center items-center bg-green ba pointer dim"
                 onClick={() => logInput(`/`)}
             >
             /
             </div>
             <div 
+                id="multiply"
                 className="w-100 h-100 flex justify-center items-center bg-green ba pointer dim"
                 onClick={() => logInput(`*`)}
             >
@@ -50,6 +53,7 @@ logEquals,
             9
             </div>
             <div 
+                id="subtract"
                 className="w-100 h-100 flex justify-center items-center bg-green ba pointer dim"
                 onClick={() => logInput(`-`)}
             >
@@ -77,6 +81,7 @@ logEquals,
             6
             </div>
             <div 
+                id="add"
                 className="w-100 h-100 flex justify-center items-center bg-green ba pointer dim"
                 onClick={() => logInput("+")}
             >
@@ -111,6 +116,7 @@ logEquals,
             0
             </div>
             <div 
+                
                 className="w-100 h-100 flex justify-center items-center bg-blue ba pointer dim"
                 onClick={() => logInput(`.`)}
             >
