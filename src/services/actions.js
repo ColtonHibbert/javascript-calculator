@@ -1,4 +1,12 @@
-import  {CHANGE_DISPLAY_UPPER, CURRENT_VALUE, COMBINE_INPUTS, CALCULATED_VALUE, CLEAR_COMBINED_INPUTS } from './constants.js';
+import  { 
+    CHANGE_DISPLAY_UPPER, 
+    CURRENT_VALUE, 
+    COMBINE_INPUTS, 
+    CALCULATED_VALUE, 
+    CLEAR_COMBINED_INPUTS,
+    UPDATE_PREVIOUS_VALUE, 
+    CHANGE_FIRST_VALUE_TO_NON_ZERO_NUMBER,
+} from './constants.js';
 import {store} from '../index.js';
 import 'redux';
 
@@ -7,7 +15,7 @@ export const changeDisplayUpper = (value) => {
     return { 
         type: CHANGE_DISPLAY_UPPER,
         payload: value,
-    }
+    };
 }
 
 export const updateCurrentValue = (value) => {
@@ -15,7 +23,22 @@ export const updateCurrentValue = (value) => {
     return {
         type: CURRENT_VALUE,
         payload: value,
-    }
+    };
+}
+
+export const updatePreviousValue = () => {
+    return {
+    type: UPDATE_PREVIOUS_VALUE,
+    payload: store.getState().combinedInputs[store.getState().combinedInputs.length - 1 ],
+    };
+}
+
+export const changeFirstValueToNonZeroNumber = (value) => {
+    return {
+        type: CHANGE_FIRST_VALUE_TO_NON_ZERO_NUMBER,
+        changeFirstValueToNonZeroNumberPayload: [value],
+        currentValuePayload: value,
+    };
 }
 
 export const combineInputs = (value) => {
@@ -26,18 +49,44 @@ export const combineInputs = (value) => {
 export const calculatedValue = (value) => {
     return {
         type: CALCULATED_VALUE, 
-        payload: value
+        payload: value,
     };
 }
 
 export const clearCombinedInputs = (value) => {
     return {
         type: CLEAR_COMBINED_INPUTS, 
-        combinedInputsPayload: [],
+        combinedInputsPayload: [0],
         currentOperatorPayload: null,
-        payload: value,
+        //payload: value,
+    };
+}
+
+export const logInputs = (value) => {
+    return (dispatch, value) => {
+        console.log(store.getState());
+     if(store.getState().combinedInputs.length === 1 && value !== 0 || value !== "+" || value !== "-" ||  value !== "*" ||  value !== "/") {
+        dispatch({type: CALCULATED_VALUE, payload: value});
+        dispatch({
+            type: CHANGE_FIRST_VALUE_TO_NON_ZERO_NUMBER,
+            changeFirstValueToNonZeroNumberPayload: [value],
+            currentValuePayload: value, });
+      }
+      if(store.getState().combinedInputs.length >= 2 ) {
+        dispatch({ 
+            type: UPDATE_PREVIOUS_VALUE,
+            payload: store.getState().combinedInputs[store.getState().combinedInputs.length - 1 ],});
+      }
+      else {
+       dispatch({ 
+            type: CURRENT_VALUE,
+            payload: value,});
+       dispatch({type: COMBINE_INPUTS, payload: value});
+      }
     }
 }
+
+
 // export const logInput7 = (value, dispatch) => {
 //     dispatch(updateCurrentValue(value));
 //     dispatch(combineInputs(value));

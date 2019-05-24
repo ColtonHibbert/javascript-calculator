@@ -5,7 +5,10 @@ const Display = ({ combinedInputs, calculatedValue, displayLower }) => {
     stringValue.toString();
 
     return (
-        <div className="pointer bg-blue">
+        <div
+            id="display"
+            className="pointer bg-blue"
+        >
             <div 
                 className="
                 h2 flex justify-end white

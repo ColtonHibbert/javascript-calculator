@@ -1,14 +1,20 @@
 import {
-     CHANGE_DISPLAY_UPPER, CURRENT_VALUE, COMBINE_INPUTS, CALCULATED_VALUE, CLEAR_COMBINED_INPUTS
+    CHANGE_DISPLAY_UPPER, 
+    CURRENT_VALUE, COMBINE_INPUTS, 
+    CALCULATED_VALUE,
+    CLEAR_COMBINED_INPUTS,
+    UPDATE_PREVIOUS_VALUE,
+    CHANGE_FIRST_VALUE_TO_NON_ZERO_NUMBER,
 } from "./constants.js";
+
 
 const initialState = {
     //displayUpper: null,
     displayLower: null,
-    currentValue: null,
-    //previousValue: null,
+    currentValue: 0,
+    previousValue: null,
     currentOperator: null,
-    combinedInputs: [],
+    combinedInputs: [0],
     calculatedValue: null,
 }
 
@@ -19,6 +25,16 @@ export const rootReducer = (state=initialState, action={}) => {
     if(action.type === CURRENT_VALUE ) {
         return {...state, currentValue: action.payload }
     } 
+    if(action.type === UPDATE_PREVIOUS_VALUE) {
+        return{...state, previousValue: action.payload }
+    }
+    if(action.type = CHANGE_FIRST_VALUE_TO_NON_ZERO_NUMBER) {
+        return {
+            ...state,
+            combinedInputs: action.changeFirstValueToNonZeroNumberPayload,
+            currentValue: action.currentValuePayload,
+        };
+    }
     if(action.type === COMBINE_INPUTS ) {
         return {...state, combinedInputs:  function newInputs() {
             const newArray = state.combinedInputs.slice();
