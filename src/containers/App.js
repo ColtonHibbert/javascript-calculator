@@ -3,19 +3,26 @@ import 'tachyons';
 import Calculator from '../components/Calculator.js';
 import Display from '../components/Display.js';
 import Buttons from '../components/Buttons.js';
-import { changeDisplayUpper, updateCurrentValue,
-         combineInputs, calculatedValue
+import { 
+  changeDisplayUpper, 
+  updateCurrentValue,
+  combineInputs, 
+  calculatedValue, 
+  clearCombinedInputs,
+  updatePreviousValue,
+  changeFirstValueToNonZeroNumber,
+  logInputs,
  } from '../services/actions.js';
 import { connect } from 'react-redux';
 import { store } from '../index.js';
-//
+
 const mapStateToProps = (state) => {
   return {
     displayUpper: state.displayUpper,
     displayLower: state.calculatedValue,
     currentValue: state.currentValue,
     previousValue: state.previousValue,
-    currentOperand: state.currentOperand,
+    currentOperator: state.currentOperator,
     combinedInputs: state.combinedInputs,
     calculatedValue: state.calculatedValue,
   }
@@ -27,25 +34,24 @@ const mapDispatchToProps = (dispatch) => {
     updateCurrentValue: (value) => dispatch(updateCurrentValue(value)),
     combineInputs: (value) => dispatch(combineInputs(value)),
     calculatedValue: (value) => dispatch(calculatedValue(value)),
-    logInput: (value) => {
-      dispatch(updateCurrentValue(value));
-      dispatch(combineInputs(value));
-      console.log(store.getState());
-    },
-    logPlus: (value) => {
-      dispatch(updateCurrentValue(value));
-      dispatch(combineInputs(value));
-      console.log(store.getState());
-    },
+    changeFirstValueToNonZeroNumber: (value) => dispatch(changeFirstValueToNonZeroNumber(value)),
     logEquals: (value) => {
       dispatch(updateCurrentValue(value));
       dispatch(calculatedValue(value));
     },
     allClear: (value) => {
-      dispatch(updateCurrentValue(value));
-      dispatch(calculatedValue(value));
-      dispatch(combineInputs(value));
-    }
+      dispatch(clearCombinedInputs(value));
+    },
+    logInputs: (value) => { dispatch(logInputs(value));}
+       // logInput: (value) => {
+    //  dispatch(updateCurrentValue(value));
+    //  dispatch(combineInputs(value));
+    // },
+    // logPlus: (value) => {
+    //   dispatch(updateCurrentValue(value));
+    //   dispatch(combineInputs(value));
+    //   console.log(store.getState());
+    // },
   }
 }
 
@@ -57,23 +63,28 @@ class App extends Component {
     //   value: 1,
     // }
   }
-  // logInput7(value, dispatch ) {
-  //   this.updateCurrentValue(value);
-  //   this.combineInputs(value);
-  //   console.log(store.getState())
-  //   console.log('hello')
+
+  // functionCalulateValue() {
+  //     const inputs = this.props.combinedInputs.slice();
+  //     inputs.join("");
+  //     return inputs;
   // }
-  functionGetCurrentValue() {
-    
-  }
-  checkZeros() {
-    
-  }
-  functionCalulateValue() {
-      const inputs = this.props.combinedInputs.slice();
-      inputs.join("");
-      return inputs;
-  }
+  // logInputs(value) {
+  //   console.log(store.getState());
+  //   //  if(this.props.combinedInputs.length === 1 && value !== 0 || value !== "+" || value !== "-" ||  value !== "*" ||  value !== "/") {
+  //   //     this.props.updateCurrentValue(value);
+  //   //     this.props.changeFirstValueToNonZeroNumber(value);
+  //   //   }
+  //   //   if(this.props.combinedInputs.length >= 2 ) {
+  //   //     this.props.updatePreviousValue();
+  //   //   }
+  //   //   else {
+  //      dispatch(updateCurrentValue(value));
+  //      dispatch(this.props.combineInputs(value));
+  //   //  }
+  // }
+  
+
   render() {
   return (
     <div className="min-vh-100 bg-light-green flex flex-column items-center">
@@ -86,7 +97,7 @@ class App extends Component {
         <Buttons 
            changeDisplayUpper={this.props.changeDisplayUpper}
            updateCurrentValue={this.props.updateCurrentValue}
-           logInput={this.props.logInput}
+           logInputs={this.props.logInputs}
            logPlus={this.props.logPlus}
            logEquals={this.props.logEquals}
            allClear={this.props.allClear}
