@@ -1,5 +1,4 @@
 import  { 
-    CHANGE_DISPLAY_UPPER, 
     CURRENT_VALUE, 
     COMBINE_INPUTS, 
     CALCULATED_VALUE, 
@@ -10,13 +9,6 @@ import  {
 import {store} from '../index.js';
 import 'redux';
 
-export const changeDisplayUpper = (value) => {
-    console.log(value);
-    return { 
-        type: CHANGE_DISPLAY_UPPER,
-        payload: value,
-    };
-}
 
 export const updateCurrentValue = (value) => {
     console.log(value);
@@ -62,29 +54,32 @@ export const clearCombinedInputs = (value) => {
     };
 }
 
-export const logInputs = (value) => {
-    return (dispatch, value) => {
-        console.log(store.getState());
-     if(store.getState().combinedInputs.length === 1 && value !== 0 || value !== "+" || value !== "-" ||  value !== "*" ||  value !== "/") {
-        dispatch({type: CALCULATED_VALUE, payload: value});
-        dispatch({
-            type: CHANGE_FIRST_VALUE_TO_NON_ZERO_NUMBER,
-            changeFirstValueToNonZeroNumberPayload: [value],
-            currentValuePayload: value, });
-      }
-      if(store.getState().combinedInputs.length >= 2 ) {
-        dispatch({ 
-            type: UPDATE_PREVIOUS_VALUE,
-            payload: store.getState().combinedInputs[store.getState().combinedInputs.length - 1 ],});
-      }
-      else {
-       dispatch({ 
-            type: CURRENT_VALUE,
-            payload: value,});
-       dispatch({type: COMBINE_INPUTS, payload: value});
-      }
-    }
-}
+
+
+
+// export const logInputs = (value) => {
+//     return (value, dispatch, getState ) => {
+//         console.log(store.getState());
+//      if(store.getState().combinedInputs.length === 1 && value !== 0 || value !== "+" || value !== "-" ||  value !== "*" ||  value !== "/") {
+//         dispatch({type: CALCULATED_VALUE, payload: value});
+//         dispatch({
+//             type: CHANGE_FIRST_VALUE_TO_NON_ZERO_NUMBER,
+//             changeFirstValueToNonZeroNumberPayload: [value],
+//             currentValuePayload: value, });
+//       }
+//       if(getState().combinedInputs.length >= 2 ) {
+//         dispatch({ 
+//             type: UPDATE_PREVIOUS_VALUE,
+//             payload: getState().combinedInputs[getState().combinedInputs.length - 1 ],});
+//       }
+//       else {
+//        dispatch({ 
+//             type: CURRENT_VALUE,
+//             payload: value,});
+//        dispatch({type: COMBINE_INPUTS, payload: value});
+//       }
+//     }
+// }
 
 
 // export const logInput7 = (value, dispatch) => {
@@ -95,4 +90,3 @@ export const logInputs = (value) => {
 //     return {
 //         type: LOG_INPUT_7
 //     }
-//   }

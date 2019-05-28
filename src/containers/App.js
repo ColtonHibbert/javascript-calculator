@@ -4,21 +4,19 @@ import Calculator from '../components/Calculator.js';
 import Display from '../components/Display.js';
 import Buttons from '../components/Buttons.js';
 import { 
-  changeDisplayUpper, 
   updateCurrentValue,
   combineInputs, 
   calculatedValue, 
   clearCombinedInputs,
   updatePreviousValue,
   changeFirstValueToNonZeroNumber,
-  logInputs,
+  //logInputs,
  } from '../services/actions.js';
 import { connect } from 'react-redux';
 import { store } from '../index.js';
 
 const mapStateToProps = (state) => {
   return {
-    displayUpper: state.displayUpper,
     displayLower: state.calculatedValue,
     currentValue: state.currentValue,
     previousValue: state.previousValue,
@@ -30,7 +28,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    changeDisplayUpper: () => dispatch(changeDisplayUpper()),
     updateCurrentValue: (value) => dispatch(updateCurrentValue(value)),
     combineInputs: (value) => dispatch(combineInputs(value)),
     calculatedValue: (value) => dispatch(calculatedValue(value)),
@@ -42,11 +39,11 @@ const mapDispatchToProps = (dispatch) => {
     allClear: (value) => {
       dispatch(clearCombinedInputs(value));
     },
-    logInputs: (value) => { dispatch(logInputs(value));}
-       // logInput: (value) => {
-    //  dispatch(updateCurrentValue(value));
-    //  dispatch(combineInputs(value));
-    // },
+    // logInputs: (value) => { dispatch(logInputs(value));}
+    logInputs: (value) => {
+     dispatch(updateCurrentValue(value));
+     dispatch(combineInputs(value));
+    },
     // logPlus: (value) => {
     //   dispatch(updateCurrentValue(value));
     //   dispatch(combineInputs(value));
@@ -56,8 +53,8 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     //this.props = 1;
     // this.state= {
     //   value: 1,
@@ -83,7 +80,7 @@ class App extends Component {
   //      dispatch(this.props.combineInputs(value));
   //   //  }
   // }
-  
+
 
   render() {
   return (
@@ -95,7 +92,6 @@ class App extends Component {
           calculatedValue={this.props.calculatedValue}
         />
         <Buttons 
-           changeDisplayUpper={this.props.changeDisplayUpper}
            updateCurrentValue={this.props.updateCurrentValue}
            logInputs={this.props.logInputs}
            logPlus={this.props.logPlus}
