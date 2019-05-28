@@ -1,5 +1,4 @@
 import {
-    CHANGE_DISPLAY_UPPER, 
     CURRENT_VALUE, COMBINE_INPUTS, 
     CALCULATED_VALUE,
     CLEAR_COMBINED_INPUTS,
@@ -19,22 +18,19 @@ const initialState = {
 }
 
 export const rootReducer = (state=initialState, action={}) => {
-    if(action.type === CHANGE_DISPLAY_UPPER ) {
-        return {...state, displayUpper: action.payload }
-    } 
     if(action.type === CURRENT_VALUE ) {
         return {...state, currentValue: action.payload }
     } 
     if(action.type === UPDATE_PREVIOUS_VALUE) {
         return{...state, previousValue: action.payload }
     }
-    if(action.type = CHANGE_FIRST_VALUE_TO_NON_ZERO_NUMBER) {
-        return {
-            ...state,
-            combinedInputs: action.changeFirstValueToNonZeroNumberPayload,
-            currentValue: action.currentValuePayload,
-        };
-    }
+    // if(action.type = CHANGE_FIRST_VALUE_TO_NON_ZERO_NUMBER) {
+    //     return {
+    //         ...state,
+    //         combinedInputs: action.changeFirstValueToNonZeroNumberPayload,
+    //         currentValue: action.currentValuePayload,
+    //     };
+    // }
     if(action.type === COMBINE_INPUTS ) {
         return {...state, combinedInputs:  function newInputs() {
             const newArray = state.combinedInputs.slice();
@@ -60,7 +56,5 @@ export const rootReducer = (state=initialState, action={}) => {
             }()
         }
     }
-    else {
         return state;
-    }
 }
