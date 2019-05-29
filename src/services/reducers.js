@@ -46,7 +46,7 @@ export const rootReducer = (state=initialState, action={}) => {
             combinedInputs: action.combinedInputsPayload,
             currentOperator: action.currentOperatorPayload,
             displayLower: action.payload,
-            calculatedValue: action.payload,
+            calculatedValue: action.calculatedValuePayload,
             currentValue: action.payload,
             firstNonZeroValidation: action.firstNonZeroValidationFalsePayload,
         }
