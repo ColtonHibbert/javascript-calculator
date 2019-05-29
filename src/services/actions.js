@@ -22,7 +22,7 @@ export const updateCurrentValue = (value) => {
 export const updatePreviousValue = () => {
     return {
     type: UPDATE_PREVIOUS_VALUE,
-    payload: store.getState().combinedInputs[store.getState().combinedInputs.length - 1 ],
+    payload: store.getState().combinedInputs[store.getState().combinedInputs.length - 2 ],
     };
 }
 
@@ -53,6 +53,7 @@ export const clearCombinedInputs = (value) => {
         currentOperatorPayload: null,
         payload: value,
         firstNonZeroValidationFalsePayload: false,
+        calculatedValuePayload: null,
         //payload: value,
     };
 }
@@ -69,20 +70,23 @@ export const firstNonZeroValidationTrue = () => {
 export const logInputs = (value) => {
     return (dispatch, getState ) => {
         console.log(store.getState().combinedInputs[0]);
-        console.log(`this is the ${value} in logInputs`)
-        if(store.getState().firstNonZeroValidation === true ) 
-     {
-        dispatch(updateCurrentValue(value));
-        dispatch(combineInputs(value));
-     }
-     if(store.getState().combinedInputs[0] === 0 && value !== 0 && value !== "+" && value !== "-" && value !== "*" && value !== "/") {
+        console.log(`this is the ${value} in logInputs`);
+        if(store.getState().firstNonZeroValidation === true) 
+            {
+              if (store.getState().previousValue === value && value === '+' || value === '-' || value === '*' || value === '/' || value === '.') {
+       
+            }  else {
+            dispatch(updateCurrentValue(value));
+            dispatch(combineInputs(value));
+            }
+        }
+       if(store.getState().combinedInputs[0] === 0 && value !== 0 && value !== "+" && value !== "-" && value !== "*" && value !== "/") {
         dispatch(updateCurrentValue(value));
         dispatch(changeFirstValueToNonZeroNumber(value));
         dispatch(firstNonZeroValidationTrue());
-      }
-      if(store.getState().combinedInputs.length >= 2 ) {
+       }
+       if(store.getState().combinedInputs.length >= 2 ) {
         dispatch(updatePreviousValue(value));
-      }
-      
+       }
     }
 }
