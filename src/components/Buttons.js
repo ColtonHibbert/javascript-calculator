@@ -116,7 +116,7 @@ logEquals,
             0
             </div>
             <div 
-                
+                id="decimal"
                 className="w-100 h-100 flex justify-center items-center bg-blue ba pointer dim"
                 onClick={() => logInputs(`.`)}
             >

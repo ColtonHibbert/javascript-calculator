@@ -10,7 +10,7 @@ import {
   clearCombinedInputs,
   updatePreviousValue,
   changeFirstValueToNonZeroNumber,
-  //logInputs,
+  logInputs,
  } from '../services/actions.js';
 import { connect } from 'react-redux';
 import { store } from '../index.js';
@@ -39,11 +39,11 @@ const mapDispatchToProps = (dispatch) => {
     allClear: (value) => {
       dispatch(clearCombinedInputs(value));
     },
-    // logInputs: (value) => { dispatch(logInputs(value));}
-    logInputs: (value) => {
-     dispatch(updateCurrentValue(value));
-     dispatch(combineInputs(value));
-    },
+    logInputs: (value) => { dispatch(logInputs(value));}
+    // logInputs: (value) => {
+    //  dispatch(updateCurrentValue(value));
+    //  dispatch(combineInputs(value));
+    // },
     // logPlus: (value) => {
     //   dispatch(updateCurrentValue(value));
     //   dispatch(combineInputs(value));
