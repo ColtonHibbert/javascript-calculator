@@ -6,10 +6,10 @@ const Display = ({ combinedInputs, calculatedValue, displayLower }) => {
 
     return (
         <div
-            id="display"
             className="pointer bg-blue"
         >
             <div 
+                id="display"
                 className="
                 h2 flex justify-end white
                 h2-ns

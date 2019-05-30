@@ -8,9 +8,9 @@ import {
   combineInputs, 
   calculatedValue, 
   clearCombinedInputs,
-  updatePreviousValue,
   changeFirstValueToNonZeroNumber,
   logInputs,
+  logEquals,
  } from '../services/actions.js';
 import { connect } from 'react-redux';
 import { store } from '../index.js';
@@ -32,10 +32,7 @@ const mapDispatchToProps = (dispatch) => {
     combineInputs: (value) => dispatch(combineInputs(value)),
     calculatedValue: (value) => dispatch(calculatedValue(value)),
     changeFirstValueToNonZeroNumber: (value) => dispatch(changeFirstValueToNonZeroNumber(value)),
-    logEquals: (value) => {
-      dispatch(updateCurrentValue(value));
-      dispatch(calculatedValue(value));
-    },
+    logEquals: (value) => { dispatch(logEquals(value))},
     allClear: (value) => {
       dispatch(clearCombinedInputs(value));
     },
@@ -61,30 +58,9 @@ class App extends Component {
     // }
   }
 
-  // functionCalulateValue() {
-  //     const inputs = this.props.combinedInputs.slice();
-  //     inputs.join("");
-  //     return inputs;
-  // }
-  // logInputs(value) {
-  //   console.log(store.getState());
-  //   //  if(this.props.combinedInputs.length === 1 && value !== 0 || value !== "+" || value !== "-" ||  value !== "*" ||  value !== "/") {
-  //   //     this.props.updateCurrentValue(value);
-  //   //     this.props.changeFirstValueToNonZeroNumber(value);
-  //   //   }
-  //   //   if(this.props.combinedInputs.length >= 2 ) {
-  //   //     this.props.updatePreviousValue();
-  //   //   }
-  //   //   else {
-  //      dispatch(updateCurrentValue(value));
-  //      dispatch(this.props.combineInputs(value));
-  //   //  }
-  // }
-
-
   render() {
   return (
-    <div className="min-vh-100 bg-light-green flex flex-column items-center">
+    <div className="min-vh-100 bg-light-green flex flex-column items-center pt5">
       <Calculator>
         <Display 
           displayLower={this.props.displayLower}
