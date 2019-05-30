@@ -7,7 +7,11 @@ import {
     CHANGE_FIRST_VALUE_TO_NON_ZERO_NUMBER,
     FIRST_NON_ZERO_VALIDATION_TRUE,
     POP_VALUE_COMBINED_INPUTS,
+    DECIMAL_EXISTS_FALSE,
+    DECIMAL_EXISTS_TRUE,
+    UPDATE_COMBINED_INPUTS_TO_LOG_EQUALS,
 } from "./constants.js";
+import { updateCombinedInputsToLogEquals } from "./actions.js";
 
 
 const initialState = {
@@ -19,6 +23,7 @@ const initialState = {
     combinedInputs: [0],
     calculatedValue: null,
     firstNonZeroValidation: false,
+    decimalExists: false,
 }
 
 export const rootReducer = (state=initialState, action={}) => {
@@ -55,6 +60,7 @@ export const rootReducer = (state=initialState, action={}) => {
             currentValue: action.payload,
             firstNonZeroValidation: action.firstNonZeroValidationFalsePayload,
             previousValue: action.previousValuePayload,
+            decimalExists: action.decimalExistsFalsePayload,
         }
     }
     if(action.type === CALCULATED_VALUE ) {
@@ -76,6 +82,19 @@ export const rootReducer = (state=initialState, action={}) => {
             newValues.pop();
             return newValues;
             }()
+        }
+    }
+    if(action.type === DECIMAL_EXISTS_FALSE ) {
+        return {...state, decimalExists: action.decimalExistsFalsePayload }
+    }
+    if(action.type === DECIMAL_EXISTS_TRUE ) {
+        return {...state, decimalExists: action.decimalExistsTruePayload }
+    }
+    if(action.type === UPDATE_COMBINED_INPUTS_TO_LOG_EQUALS) {
+        return {...state, 
+            combinedInputs: action.updateCombinedInputsToLogEqualsPayload,
+            previousValue: action.previousValuePayload,
+        
         }
     }
         return state;

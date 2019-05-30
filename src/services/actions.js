@@ -8,6 +8,9 @@ import  {
     CHANGE_FIRST_VALUE_TO_NON_ZERO_NUMBER,
     FIRST_NON_ZERO_VALIDATION_TRUE,
     POP_VALUE_COMBINED_INPUTS,
+    DECIMAL_EXISTS_FALSE,
+    DECIMAL_EXISTS_TRUE,
+    UPDATE_COMBINED_INPUTS_TO_LOG_EQUALS,
 } from './constants.js';
 import {store} from '../index.js';
 import 'redux';
@@ -64,6 +67,7 @@ export const clearCombinedInputs = (value) => {
         firstNonZeroValidationFalsePayload: false,
         calculatedValuePayload: null,
         previousValuePayload: null,
+        decimalExistsFalsePayload: false,
     };
 }
 
@@ -80,6 +84,45 @@ export const popValueCombinedInputs = () => {
     }
 }
 
+export const decimalExistsFalse = () => {
+    return {
+        type: DECIMAL_EXISTS_FALSE,
+        decimalExistsFalsePayload: false,
+    }
+}
+
+export const decimalExistsTrue = () => {
+    return {
+        type: DECIMAL_EXISTS_TRUE,
+        decimalExistsTruePayload: true,
+    }
+}
+
+export const updateCombinedInputsToLogEquals = () => {
+    return {
+    type: UPDATE_COMBINED_INPUTS_TO_LOG_EQUALS,
+    updateCombinedInputsToLogEqualsPayload: [store.getState().calculatedValue],
+    previousValuePayload: null,
+    }
+}
+
+export const logEquals = (value) => {
+    return (dispatch) => {
+        if(
+            store.getState().combinedInputs[store.getState().combinedInputs.length - 1 ] === `+` 
+            || store.getState().combinedInputs[store.getState().combinedInputs.length - 1 ] === `-`
+            || store.getState().combinedInputs[store.getState().combinedInputs.length - 1 ] === `*`
+            || store.getState().combinedInputs[store.getState().combinedInputs.length - 1 ] === `/`
+         ) {
+             dispatch(popValueCombinedInputs());
+         }
+         console.log("should have popped the operator for equals if there was one")
+      dispatch(updateCurrentValue(value));
+      dispatch(calculatedValue(value));
+      dispatch(updateCombinedInputsToLogEquals());
+      console.log(typeof(store.getState().calculatedValue));
+    }
+}
 
 export const logInputs = (value) => {
     return (dispatch, getState ) => {
@@ -94,12 +137,18 @@ export const logInputs = (value) => {
         }
         if(store.getState().combinedInputs[0] === 0 && value !== 0 && value !== "+" && value !== "-" && value !== "*" && value !== "/") {
             console.log("zero checker and nonzero validation and changeFVTNZ");
+            if(value === `.`) {
+                dispatch(decimalExistsTrue());
+            }
             dispatch(updateCurrentValue(value));
             dispatch(changeFirstValueToNonZeroNumber(value));
             dispatch(firstNonZeroValidationTrue());
         }
         else if(store.getState().firstNonZeroValidation === true) {
-            if(store.getState().previousValue === `.` && value === `.`) {
+            if(store.getState().previousValue === `.` && value === `.` || 
+            store.getState().combinedInputs[0] === `.` && store.getState().combinedInputs.length === 1 && value === `.`
+            || store.getState().decimalExists === true && value === `.`
+            ) {
                 console.log("should do nothing for double decimal")
             } else {
                 if(
@@ -120,6 +169,12 @@ export const logInputs = (value) => {
                     store.getState().previousValue === `/` && value === `*` ||
                     store.getState().previousValue === `/` && value === `/` 
                 ) {
+                    if(value === `+` || value === `-` || value === `*` || value === `/`) {
+                        dispatch(decimalExistsFalse());
+                    }
+                    if(value === `.`) {
+                        dispatch(decimalExistsTrue());
+                    }
                     console.log("pop for operators")
                     dispatch(popValueCombinedInputs());
                     //dispatch update current and combine inputs
@@ -127,6 +182,12 @@ export const logInputs = (value) => {
                     dispatch(updateCurrentValue(value));
                     dispatch(combineInputs(value));
                 }   else {
+                    if(value === `+` || value === `-` || value === `*` || value === `/`) {
+                        dispatch(decimalExistsFalse());
+                    }
+                    if(value === `.`) {
+                        dispatch(decimalExistsTrue());
+                    }
                         console.log("here should update and combine inputs normal")
                         dispatch(updateCurrentValue(value));
                         dispatch(combineInputs(value));
